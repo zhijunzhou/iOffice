@@ -33,6 +33,11 @@ export const constantRouterMap = [
     hidden: true
   },
   {
+    path: '/document',
+    component: () => import('@/views/editor'),
+    hidden: true
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',

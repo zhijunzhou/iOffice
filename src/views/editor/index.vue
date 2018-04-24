@@ -1,18 +1,16 @@
 <template>
   <div class="document-editor">
     <div class="document-editor__toolbar"></div>
-    <div class="document-editor__editable-wrapper">
-      <div class="document-editor__editable-container">
-        <div class="document-editor__editable">
-          <h2>Sample</h2>
-          <p>This is an instance of the
-            <a href="https://docs.ckeditor.com/ckeditor5/latest/builds/guides/overview.html#document-editor">document editor build</a>.</p>
-          <figure class="image">
-            <img :src="sample" alt="Autumn fields" />
-          </figure>
-          <p>You can use this sample to validate whether your
-            <a href="https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html">custom build</a> works fine.</p>
-        </div>
+    <div class="document-editor__editable-container">
+      <div class="document-editor__editable">
+        <h2>Sample</h2>
+        <p>This is an instance of the
+          <a href="https://docs.ckeditor.com/ckeditor5/latest/builds/guides/overview.html#document-editor">document editor build</a>.</p>
+        <figure class="image">
+          <img :src="sample" alt="Autumn fields" />
+        </figure>
+        <p>You can use this sample to validate whether your
+          <a href="https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html">custom build</a> works fine.</p>
       </div>
     </div>
   </div>
@@ -64,12 +62,11 @@ export default {
   /* This element is a flex container for easier rendering. */
   display: flex;
   flex-flow: column nowrap;
-  overflow: hidden;
 }
 
 .document-editor__toolbar {
   /* Make sure the toolbar container is always above the editable. */
-  z-index: 1;
+  z-index: 1000;
 
   /* Create the illusion of the toolbar floating over the editable. */
   box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
@@ -92,12 +89,17 @@ export default {
 /* Make the editable container look like the inside of a native word processor application. */
 .document-editor__editable-container {
   height: 100%;
-  min-height: 25cm;
   padding: calc(2 * var(--ck-spacing-large));
   background: var(--ck-color-base-foreground);
 
   /* Make it possible to scroll the "page" of the edited content. */
   overflow-y: scroll;
+}
+
+.document-editor__editable {
+  display: table;
+  overflow: hidden !important;
+  min-height: 22cm;
 }
 
 .document-editor__editable-container .ck-editor__editable {

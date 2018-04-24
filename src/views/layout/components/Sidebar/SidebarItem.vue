@@ -53,3 +53,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+</style>
