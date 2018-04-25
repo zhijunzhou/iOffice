@@ -4,6 +4,7 @@ dist/
 npm-debug.log
 .idea/
 coverage/
+uploads/
 .env*
 .coveralls.yml
 yarn-error.log
