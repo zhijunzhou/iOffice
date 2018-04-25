@@ -6,14 +6,16 @@ const listen = (app, socket, queue) => {
       queue[uid] = true
       console.log(`${uid} joined at ${Date.now()}`)
     }
+    app._io.emit('queue', JSON.stringify(queue))
   })
 
   socket.on('leave', function(uid) {
     queue[uid] = false
     console.log(`${uid} leaved at ${Date.now()}`)
+    app._io.emit('queue', JSON.stringify(queue))
   })
 
-  socket.on('chat message', function(msg) {
+  socket.on('message', function(msg) {
     var originMsg = JSON.parse(msg)
 
     for(let u in queue) {
@@ -21,7 +23,7 @@ const listen = (app, socket, queue) => {
     }
     queue[originMsg.editor] = false
     originMsg.queue = queue
-    app._io.emit('chat message', JSON.stringify(originMsg))
+    app._io.emit('message', JSON.stringify(originMsg))
   })
 }
 
