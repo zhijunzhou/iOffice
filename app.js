@@ -37,7 +37,7 @@ app.use(async function(ctx, next) {
 var queue = {}
 
 app._io.on('connection', socket => {
-  socketUtils.listen(socket)
+  socketUtils.listen(app, socket, queue)
 })
 
 app.use(async function(ctx, next) {

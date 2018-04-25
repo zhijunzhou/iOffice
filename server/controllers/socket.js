@@ -1,4 +1,4 @@
-const listen = socket => {
+const listen = (app, socket, queue) => {
   socket.on('join', function(uid) {
     if (queue[uid] === true) {
       console.log(`${uid} reconnected`)
@@ -15,13 +15,13 @@ const listen = socket => {
 
   socket.on('chat message', function(msg) {
     var originMsg = JSON.parse(msg)
+
+    for(let u in queue) {
+      queue[u] = true
+    }
+    queue[originMsg.editor] = false
     originMsg.queue = queue
-    // console.log(new Date() + ": " + msg)
     app._io.emit('chat message', JSON.stringify(originMsg))
-
-    // var notification = {}
-
-    // app._io.emit('notification', JSON.stringify(notification))
   })
 }
 
