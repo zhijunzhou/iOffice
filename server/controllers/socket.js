@@ -10,7 +10,7 @@ const listen = (app, socket, queue) => {
   })
 
   socket.on('leave', function(uid) {
-    queue[uid] = false
+    delete queue[uid]
     console.log(`${uid} leaved at ${Date.now()}`)
     app._io.emit('queue', JSON.stringify(queue))
   })
